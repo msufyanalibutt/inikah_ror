@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inikkah</title>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= csp_meta_tag %>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <div id="nk-wrapper" class="unobtrusive-flash-container">
+      <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+        <%= link_to 'Inikah', root_path, class: "navbar-brand col-sm-3 col-md-2 mr-0" %>
+        <ul class="navbar-nav px-3">
+          <li class="nav-item text-nowrap">
+            <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+        </ul>
+      </nav>
+      <div class="container-fluid">
+        <div class="row">
+          <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link <%= active_admin_links('dashboard-index') %>" href="/">
+                    <span data-feather="home"></span>
+                    Dashboard <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <%= link_to edit_admin_profile_path(current_user), class: "nav-link #{active_admin_links('profiles-edit')}" do %>
+                    <span data-feather="user"></span>
+                    Profile
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link <%= active_admin_links('users-index') %>" href="/admin/users">
+                    <span data-feather="file"></span>
+                    Users
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link <%= active_admin_links('events-index') %>" href="/admin/events">
+                    <span data-feather="shopping-cart"></span>
+                    Events
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <%= link_to admin_contacts_path, class: "nav-link #{active_admin_links('contacts-index')}" do %>
+                    <span data-feather="log-in"></span>
+                    Contact Requests
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to admin_profile_requests_path, class: "nav-link #{active_admin_links('profile_requests-index')}" do %>
+                    <span data-feather="eye"></span>
+                    Profile View Requests
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to admin_chat_requests_path, class: "nav-link #{active_admin_links('chat_requests-index')}" do %>
+                    <span data-feather="message-circle"></span>
+                    Chat Requests
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to admin_attachments_path, class: "nav-link #{active_admin_links('attachments-index')}" do %>
+                    <span data-feather="file"></span>
+                    Pending Attachments
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to admin_success_stories_path, class: "nav-link #{active_admin_links('success_stories-index')}" do %>
+                    <span data-feather="paperclip"></span>
+                    Pending Success Stories
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </nav>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 main-content">
+              <%= yield %>
+            </main>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
+  </body>
+</html>

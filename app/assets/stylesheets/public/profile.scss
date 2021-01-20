@@ -1,0 +1,254 @@
+.inner-page-content {
+  margin-top: 92px;
+}
+
+.text-green {
+  color: #3a6254;
+}
+
+.background-green {
+  background-color: #3a6254;
+}
+
+h4 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 700;
+}
+
+.profile-content {
+  background: #f8f7f7;
+
+  .card {
+    margin-bottom: 100px;
+
+    .heart {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      border: 0.5px solid #ccc;
+      border-radius: 100%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      position: absolute;
+      right: 0;
+      left: 0;
+      z-index: 11;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    .img-holder {
+      border: 0.5px solid #ccc;
+      border-radius: 100%;
+      width: 100px;
+      height: 100px;
+      margin: -50px auto 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+      img {
+        display: block;
+        border-radius: 100%;
+        height: 100px;
+      }
+    }
+
+    .text-holder {
+
+      h5 {
+        font-family: 'Roboto Condensed', sans-serif;
+        font-weight: 700;
+
+        color: #3a6254;
+      }
+    }
+
+    .caption {
+      opacity: 0;
+      transition: all 0.5s ease;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      a {
+        color: #fff;
+        font-family: 'Roboto Condensed', sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        background: #ee232a;
+        padding: 10px 30px;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    &:hover {
+      .caption {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+ul.social-icon {
+  li {
+    display: inline-block;
+    vertical-align: top;
+
+    a {
+      display: block;
+      width: 30px;
+      height: 30px;
+      background: blue;
+      color: #fff;
+      border-radius: 100%;
+
+      i {
+        padding: 8px 0;
+      }
+
+      &.twitter {
+        background: #4DC4F1;
+      }
+
+      &.pint {
+        background: #C1000F;
+      }
+    }
+  }
+}
+
+.chat-btn {
+  position: fixed;
+  bottom: 50px;
+  right: 30px;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+
+.chat-list {
+  max-width: 300px;
+  background: #fffdfd;
+  box-shadow: 0px 0px 3px 1px #ccc;
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  h4 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+  }
+
+  ul {
+    li {
+      a {
+        color: rgba(0,0,0,0.5);
+        .img-holder {
+          width: 50px;
+          height: 50px;
+          border-radius: 100%;
+
+          img {
+            border-radius: 100%;
+          }
+        }
+
+        .text-holder {
+          h6 {
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+}
+
+.img-holder-view {
+  height: 180px;
+  display: flex;
+}
+
+.multi-images {
+  ul {
+    li {
+      float: left;
+      width: 100px;
+      height: 100px;
+      border: 1px solid #dee2e6;
+      padding: 5px;
+      display: flex;
+    }
+  }
+}
+
+.profile-sidebar {
+  .img-holder {
+    height: 76px;
+    display: flex;
+  }
+}
+
+.edit-text {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  background-color: rgba(255,255,255,0.7);
+
+  div {
+    border: 5px solid #dc3545;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .inner-page-content {
+    margin-top: 0;
+
+    .card {
+      height: auto !important;
+    }
+  }
+}

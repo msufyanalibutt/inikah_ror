@@ -1,0 +1,96 @@
+<div class="inner-page-content">
+  <div class="search-area bg-danger text-white p-3 d-flex">
+    <div class="left-align">
+      <%= link_to 'Reset', search_path, class: 'text-white btn btn-sm px-0' %>
+    </div>
+    <div class="rightalign ml-auto text-right">
+      <div class="dropdown mega-dropdown" id="Mega-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn text-white btn-sm border-0 background-green" id="search-menu-button">Open Dropdown</button>
+        <form>
+          <div class="dropdown-menu user-search-menu py-4" aria-labelledby="Mega-dropdown">
+            <div class="container">
+              <div class="row mb-4">
+                <div class="col-md-4">
+                  <label class="show mb-2">City</label>
+                  <%= select_tag :city, options_for_select(CITIES), prompt: 'Please select a city', class: 'form-control form-control-sm', id: 'search-city-field' %>
+                </div>
+                <div class="col-md-4">
+                  <label class="show mb-2">Age</label>
+                  <div class="d-flex align-items-center">
+                    <%= select_tag :age_from, options_for_select([*1..150]), prompt: 'Please select age starting limit', class: 'form-control form-control-sm', id: 'search-age-from-field' %>
+                    <span class="d-inline-block mx-5">To</span>
+                    <%= select_tag :age_to, options_for_select([*1..150]), prompt: 'Please select age ending limit', class: 'form-control form-control-sm', id: 'search-age-to-field' %>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label class="show mb-2">User Name</label>
+                  <%= text_field_tag :username, nil, class: 'form-control form-control-sm', id: 'search-username-field' %>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <div class="col-sm-4">
+                  <label class="show mb-2">Education</label><br>
+                  <% User::EDUCATION.each do |education| %>
+                    <%= radio_button_tag :education, education, false, class: 'search-education-field', id: "education-#{education.downcase.parameterize}" %>
+                    <%= education %><br>
+                  <% end %>
+                </div>
+                <div class="col-sm-4">
+                  <label class="show mb-2">Income</label><br>
+                  <% {'0-25000': 'Less than 25,000', '25000-50000': '25,000 to 50,000', '50000-100000': '50,000 to 1,00,000', '100000-200000': '1,00,000 - 2,00,000', '200000': 'Greater than 2.00,000'}.each do |k, v| %>
+                    <%= radio_button_tag :income, k, false, class: 'search-income-field', id: "income-#{k}" %>
+                    <%= v %><br>
+                  <% end %>
+                </div>
+                <div class="col-sm-4">
+                  <label class="show mb-2">Height</label>
+                  <div class="d-flex align-items-center">
+                    <%= number_field_tag :height_from, nil, min: 1, max: 10, step: 0.1, class: 'form-control form-control-sm', id: 'search-height-from-field' %>
+                    <span class="d-inline-block mx-5">To</span>
+                    <%= number_field_tag :height_to, nil, min: 1, max: 10, step: 0.1, class: 'form-control form-control-sm', id: 'search-height-to-field' %>
+                  </div>
+                  <label class="show mb-2">Weight</label>
+                  <div class="d-flex align-items-center">
+                    <%= number_field_tag :weight_from, nil, min: 10, max: 600, step: 10, class: 'form-control form-control-sm', id: 'search-weight-from-field' %>
+                    <span class="d-inline-block mx-5">To</span>
+                    <%= number_field_tag :weight_to, nil, min: 10, max: 600, step: 10, class: 'form-control form-control-sm', id: 'search-weight-to-field' %>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <div class="col-md-4">
+                  <label class="show mb-2">Native Language</label>
+                  <%= select_tag :native, options_for_select(User::NATIVE), { prompt: 'Please select native language', class: 'form-control form-control-sm', id: 'search-native-field' } %>
+                </div>
+                <div class="col-md-4">
+                  <label class="show mb-2">Religion</label>
+                  <%= select_tag :religion, options_for_select(User::RELIGION), { prompt: 'Please select religion', class: 'form-control form-control-sm', id: 'search-religion-field' } %>
+                </div>
+                <div class="col-md-4">
+                  <label class="show mb-2">Marital Status</label>
+                  <%= select_tag :marital_status, options_for_select(User::MARITAL_STATUS), { prompt: 'Please select marital status', class: 'form-control form-control-sm', id: 'search-marital-status-field' } %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <label class="show mb-2">Hobbies</label>
+                  <%= text_field_tag :hobbies, nil, class: 'form-control form-control-sm', id: 'search-hobbies-field' %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-content py-5 inner-page-content">
+    <div class="container">
+      <div class="row" id="user-cards">
+        <%= render 'dashboard/user_cards', users: @users, liked_users: @liked_users %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

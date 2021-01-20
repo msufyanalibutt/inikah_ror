@@ -1,0 +1,22 @@
+$('#login-modal-container').html("<%= j(render(partial: 'shared/login_modal')) %>");
+$('#login_modal').modal('show');
+
+$('body').on('click', '#login-attempt', function(e) {
+  e.preventDefault();
+
+  var email = $('#user_email').val();
+  var password = $('#user_password').val();
+  var authenticity_token = $('input[name="authenticity_token"]').val();
+
+  $.ajax({
+    url: '/users/sign_in',
+    type: 'POST',
+    data: {authenticity_token: authenticity_token, 'user': {'email': email, 'password': password}},
+    error: function (xhr) {
+      toastr['error']('Invalid email or password', { timeOut: 3000 });
+    },
+    success: function(xhr) {
+      window.location = '/'
+    }
+  });
+});

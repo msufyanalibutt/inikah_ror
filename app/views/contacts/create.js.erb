@@ -1,0 +1,6 @@
+<% if @flag %>
+  toastr['success']('Your message has been sent to Inikah team!', { timeOut: 3000 });
+  $('#contact-form').html("<%= j(render(partial: 'contacts/form', locals: { contact: Contact.new })) %>");
+<% else %>
+  toastr['error']("<%= @contact.errors.full_messages.to_sentence %>", { timeOut: 3000 });
+<% end	%>

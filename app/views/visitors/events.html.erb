@@ -1,0 +1,41 @@
+<div class="events-page inner-page-content">
+  <div class="event-banner mb-4">
+    <%= image_tag 'events.jpg', class: 'img-fluid w-100' %>
+    <div class="caption">
+      <div class="container">
+        <div class="text-holder">
+          <span class="d-block text-danger mb-4">EVENTS</span>
+          <h2 class="mb-4">Arrive first and get a better chance <br>
+            to find someone you like</h2>
+          <p>Match Events are a great way to meet people during happy <br> hours, cultural outings, organised weekends and more, all in a <br> casual and friendly atmosphere. </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="upcoming-events">
+    <div class="container">
+      <h3 class="mb-4">Upcoming Events</h3>
+      <div class="row">
+        <% @events.each do |event| %>
+          <div class="col-md-4 mb-3">
+            <div class="col-holder">
+              <% if event.image.attached? %>
+                <%= image_tag event.image, class: 'img-fluid w-100' %>
+              <% else %>
+                <%= image_tag 'event1.jpg', class: 'img-fluid w-100' %>
+              <% end %>
+              <div class="buttons-holder">
+                <button type="button" class="btn btn-sm bg-white border-0"><%= event.location %></button>
+              </div>
+              <div class="text-holder bg-danger">
+                <p class="m-0"><%= event.start_date.strftime("%B %d, %Y") %> - <%= event.end_date.strftime("%B %d, %Y") %></p>
+                <h5 class="m-0"><%= event.name %></h5>
+                <p class="m-0"><%= simple_format(event.description) %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

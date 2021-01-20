@@ -1,0 +1,5 @@
+$("#change_conversation").html("<%= j (render(partial: 'conversation', locals: { conversation: @conversation, member: @member, user: @user })) %>");
+$("#conv_message_count_<%= @conversation.id %>").html("<%= j (render(partial: 'conv_messages_count', locals: { conv: @conversation })) %>");
+
+var d = $('.msg_card_body');
+d.scrollTop(d.prop("scrollHeight"));

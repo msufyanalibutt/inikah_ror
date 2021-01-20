@@ -1,0 +1,24 @@
+<table align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%; max-width: 600px;" class="content">
+    <tr>
+        <td align="center" bgcolor="#e67e22" style="padding: 20px 20px 20px 20px; color: #ffffff; font-family: Arial, sans-serif; font-size: 36px; font-weight: bold;">
+            <%= image_tag 'logo.png', style: 'height:200px;width:200px; display:block;' %>
+            Inikah
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ffffff" style="padding: 20px 20px 10px 20px; color: #555555; font-family: Arial, sans-serif; font-size: 20px; line-height: 30px;">
+            <b>Confirm Your Email</b>
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ffffff" style="padding: 0 20px 20px 20px; color: #555555; font-family: Arial, sans-serif; font-size: 15px; line-height: 24px; border-bottom: 1px solid #f6f6f6;">
+            <p>You can confirm your account email through the link below:</p>
+            <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" bgcolor="#dddddd" style="padding: 15px 10px 15px 10px; color: #555555; font-family: Arial, sans-serif; font-size: 12px; line-height: 18px;">
+            <b>Company Inc.</b><br/>985 Example St. &bull; Suite A1S2 &bull; San Francisco, CA 12458 USA
+        </td>
+    </tr>
+</table>

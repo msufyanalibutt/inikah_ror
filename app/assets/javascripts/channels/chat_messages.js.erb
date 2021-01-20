@@ -1,0 +1,14 @@
+App.messages = App.cable.subscriptions.create('ChatMessagesChannel', {
+  received: function(data) {
+    var message = data['message'];
+    sender_html = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src='+ data['image_url'] +' class="rounded-circle img-fluid"></div><div class="msg_cotainer">' + message + '</div></div>'
+    receiver_html = '<div class="d-flex justify-content-end mb-4"><div class="msg_cotainer_send">' + message + '</div><div class="img_cont_msg"><img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle img-fluid"></div></div>'
+    var conv = $("#conversation_"+ data['conversation']);
+    var user = $('#user_'+ data['other_id']);
+    if (conv.length > 0 && user.length > 0) {
+      conv.find('#new_message_div').append(sender_html);
+      var d = $('.msg_card_body');
+      d.scrollTop(d.prop("scrollHeight"));
+    }
+  }
+});

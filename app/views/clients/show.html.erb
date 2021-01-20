@@ -1,0 +1,174 @@
+<div class="view-profile py-5 inner-page-content">
+  <div class="container">
+    <% if current_user == @client %>
+      <%= link_to 'Edit', edit_client_path(@client), class: "btn btn-danger mb-4" %><h6> Please edit to add more information </h6>
+    <% end %>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card p-3 border-0 mb-4">
+          <div class="row">
+            <div class="col-md-4 text-center">
+              <div class="img-holder-view border p-1 mb-3">
+                <% if @client.images.attached? %>
+                  <%= image_tag @client.images.first, class: 'img-fluid' %>
+                <% else %>
+                  <%= image_tag 'profile.png', class: 'img-fluid' %>
+                <% end %>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="border-bottom mb-3 info-holder">
+                <h6 class="text-danger mb-3"><%= @client.first_name %> <%= @client.last_name %>
+                  <% if @client.verified? %>
+                    <i class="ml-1 fa-1x fa fa-check-circle"></i>
+                  <% end %>
+                </h6>
+                <p class="mb-2"><i class="fa fa-user text-green"></i> <%= @client.username %> </p>
+                <p class="mb-2"><i class="fa fa-user text-green"></i> <%= @client.age %> </p>
+                <p class="mb-2"><i class="fa fa-book text-green"></i><%= @client.religion %></p>
+                <p class="mb-2"><i class="fa fa-users text-green"></i> <%= @client.education %></p>
+                <p class="mb-2"><i class="fa fa-map-marker text-green"></i> <%= @client.job_title %></p>
+                <p class="mb-2"><i class="fa fa-graduation-cap text-green"></i> <%= @client.job_title %></p>
+              </div>
+            </div>
+            <div class="clearfix multi-images col-12">
+              <% if @client.images.attached? %>
+                <ul class="list-unstyled">
+                  <% @client.images.each do |image| %>
+                    <li>
+                      <% if image.visibility? %>
+                        <%= image_tag image, class: 'img-fluid' %>
+                      <% else %>
+                        <%= image_tag 'under_review.jpg', class: 'img-fluid' %>    
+                      <% end%>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="card border-0 mb-4">
+          <div class="card-header">
+            <h4 class="text-green"><i class="fa fa-info-circle" aria-hidden="true"></i> Personal Information</h4>
+          </div>
+          <div class="card-body">
+            <h6 class="mb-3 text-danger"><i class="fa fa-user text-danger"></i> A few words about me</h6>
+            <p><%= simple_format(@client.abount_me) %></p>
+          </div>
+        </div>
+        <div class="card border-0 mb-4">
+          <div class="card-header">
+            <h4 class="text-green"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Expectations</h4>
+          </div>
+          <div class="card-body">
+            <h6 class="mb-4 text-danger"><i class="fa fa-user text-danger"></i> What are you looking for</h6>
+            <p><%= simple_format(@client.expectations) %></p>
+          </div>
+        </div>
+        <div class="card border-0 mb-4">
+          <div class="card-header">
+            <h4 class="m-0 text-green"><i class="fa fa-id-card" aria-hidden="true"></i> Basic Detail</h4>
+          </div>
+          <div class="card-body">
+            <div class="row mb-3">
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-6"><strong>Height</strong></div>
+                  <div class="col-6"><%= @client.height %></div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-6"><strong>Weight</strong></div>
+                  <div class="col-6"><%= @client.weight %></div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-6"><strong>Native</strong></div>
+                  <div class="col-6"><%= @client.native %></div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-6"><strong>Hobbies</strong></div>
+                  <div class="col-6"><%= @client.hobbies %></div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-6"><strong>Annual Income</strong></div>
+                  <div class="col-6"><%= @client.annual_income %></div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-6"><strong>Body type / Complexion</strong></div>
+                  <div class="col-6"><%= @client.skin_tone %></div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-6"><strong>Family background</strong></div>
+                  <div class="col-6"><%= @client.family_background %></div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-6"><strong>Marital Status</strong></div>
+                  <div class="col-6"><%= @client.marital_status %></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 profile-sidebar">
+        <% unless current_user == @client %>
+          <div class="card p-3 border-0 mb-4">
+            <h6 class="text-danger mb-3">Send Message or Start a conversation</h6>
+            <%= form_for :conversation, url: conversations_path do |f|%>
+              <div class="form-group mb-2">
+                <%= hidden_field_tag :sender, current_user.id %>
+                <%= hidden_field_tag :receiver, @client.id  %>
+                <%= text_field_tag :note, nil, placeholder: "Type here", class: "form-control" %>
+              </div>
+              <button type="submit" class="btn btn-danger mb-2">Send</button>
+              <% if current_user.get_conversation(@client).any? %>
+                <%= link_to 'View Conversation', conversation_path(current_user.get_conversation(@client).last), class: "btn btn-primary mb-2" %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+        <div class="card p-3 border-0 mb-4">
+          <h6 class="mb-4 pb-3 border-bottom text-danger">Similar Profiles</h6>
+          <% User.limit(5).each do |user| %>
+            <div class="row mb-3 border-bottom">
+              <div class="col-md-4">
+                <div class="img-holder border p-1 mb-3">
+                  <% if user.images.attached? %>
+                    <%= image_tag user.images.first, class: 'img-fluid' %>
+                  <% else %>
+                    <%= image_tag 'dummy.jpg', class: 'img-fluid' %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <p class="mb-1 text-danger"><%= user.first_name %> <%= user.last_name %></p>
+                <p class="mb-2 text-danger"><%= user.age %></p>
+                <p><%= user.job_title %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

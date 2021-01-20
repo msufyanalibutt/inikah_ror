@@ -1,0 +1,24 @@
+<div class=" edit-profile py-5 inner-page-content">
+  <div class="container col-sm-6">
+
+    <h3 class="mb-5">Forgot your password?</h3>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mb-3" %>
+      </div>
+
+      <div class="actions text-center">
+        <%= f.submit "Send me reset password instructions", class: "btn btn-danger mt-3" %>
+      </div>
+    <% end %>
+
+    <div class="bottom-link text-center">
+
+      <%= render "users/shared/links" %>
+    </div>
+  </div>
+</div>

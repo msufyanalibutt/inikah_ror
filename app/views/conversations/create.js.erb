@@ -1,0 +1,6 @@
+$("#new_message_div").html("<%= j (render(partial: 'messages', locals: { conversation: @conversation, member: @member })) %>");
+$("#conv_mesg_counts").html("<%= j (render(partial: 'conv_mesg_counts', locals: { count: @conversation&.messages&.count })) %>");
+$('#note').val('');
+
+var d = $('.msg_card_body');
+d.scrollTop(d.prop("scrollHeight"));

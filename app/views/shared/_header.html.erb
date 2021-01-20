@@ -1,0 +1,89 @@
+<nav class="navbar navbar-expand-lg navbar-light header" id="myHeader">
+  <a class="navbar-brand d-lg-none" href="#"><%= image_tag 'logo.png', class: 'img-fluid' %></a>
+  <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="header-holder">
+      <a class="navbar-brand d-none d-lg-block" href="/"><%= image_tag 'logo.png', class: 'img-fluid' %></a>
+      <ul class="navbar-nav">
+        <% unless current_user %>
+          <li class="nav-item">
+            <a class="nav-link" href="/#why_nikkah">Why iNikah?</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/#does_work">How does it work?</a>
+          </li>
+        <% end %>
+        <% if current_user && current_user.user? %>
+          <li class="nav-item">
+            <%= link_to 'Dashboard', dashboard_index_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Search', search_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Success Stories', success_stories_path, class: "nav-link" %>
+          </li>
+        <% end %>
+        <li class="nav-item">
+          <%= link_to 'Events', events_path, class: "nav-link" %>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <% if current_user.present? %>
+          <li class="nav-item">
+            <strong class="count"><%= my_messages_count %></strong>
+            <%= link_to conversations_path, class: 'nav-link' do %>
+              <i class="fa fa-comments-o fa-lg"></i>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <strong class="count"><%= my_views_count %></strong>
+            <%= link_to views_path, class: 'nav-link' do %>
+              <i class="fa fa-users fa-lg"></i>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <strong class="count"><%= my_likes_count %></strong>
+            <%= link_to likes_path, class: 'nav-link' do %>
+              <i class="fa fa-heart-o fa-lg"></i>
+            <% end %>
+          </li>
+        <% end %>
+        <li class="nav-item">
+          <% if current_user && current_user.user? %>
+            <%= link_to 'Profile', client_path(current_user), class: "nav-link" %>
+          <% else %>
+            <a class="nav-link" href="/#sign-up-box">Register</a>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <% if current_user %>
+            <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "nav-link" %>
+          <% else %>
+            <%= link_to 'Log in', new_user_session_path, remote: true, class: 'nav-link' %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Modal -->
+<div id="login-modal-container"></div>
+
+<script>
+window.onscroll = function() {myFunction()};
+
+var header = document.getElementById("myHeader");
+var sticky = header.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
+</script>

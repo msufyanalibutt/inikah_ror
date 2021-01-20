@@ -1,0 +1,23 @@
+<div class=" edit-profile py-5 inner-page-content">
+  <div class="container">
+    <%= form_for @success_story, data: { validate: 'parsley' } do |f| %>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Please add a suitable title</label>
+          <%= f.text_field :name, class: 'form-control mb-3', placeholder: 'Shahin & Obonti story', required: true %>
+        </div>
+        <div class="col-md-6">
+          <label>Select a cover photo</label>
+          <%= f.file_field :image, class: 'form-control mb-3', required: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label>Please add a little description about the Journey</label>
+          <%= f.text_area :description, class: 'form-control mb-3', placeholder: "I just don't believe Inikah.com finding to help me to searching my bride. but now it is true.", required: true %>
+        </div>
+      </div>
+      <%= f.submit 'Save', class: 'btn btn-danger' %>
+    <% end %>
+  </div>
+</div>

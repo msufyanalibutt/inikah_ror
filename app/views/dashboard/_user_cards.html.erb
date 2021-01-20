@@ -1,0 +1,9 @@
+<% if users.present? %>
+  <% users.each do |user| %>
+    <div class="col-md-4" id="user-<%= user.id %>">
+      <%= render 'dashboard/user_card', user: user, is_liked: liked_users.include?(user.id) %>
+    </div>
+  <% end %>
+<% else %>
+  <h6>No users found!</h6>
+<% end %>

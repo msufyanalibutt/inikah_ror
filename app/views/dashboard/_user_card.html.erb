@@ -1,0 +1,35 @@
+<div class="card border-0 h-100">
+  <div class="img-holder">
+    <% if user.images.attached? %>
+      <%= image_tag user.images.first, class: 'img-fluid' %>
+    <% else %>
+      <%= image_tag 'dummy.jpg', class: 'img-fluid' %>
+    <% end %>
+  </div>
+  <div class="text-holder px-3 text-center">
+    <h5 class="text-danger mb-3"><%= user.first_name %> <%= user.last_name %>
+      <% if user.verified? %>
+        <i class="ml-1 fa-1x fa fa-check-circle"></i>
+      <% end %>
+    </h5>
+    <p><i class="fa fa-map-marker mb-3"></i><%= user.city %></p>
+    <p class="text-justify"><%= simple_format(user.abount_me) %></p>
+    <!-- <ul class="list-unstyled social-icon">
+      <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+      <li><a class="pint" href="#"><i class="fa fa-pinterest"></i></a></li>
+      <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+    </ul> -->
+    <% if is_liked %>
+      <%= link_to 'javascript:void(0);', class: 'heart' do %>
+        <i class="fa fa-heart text-danger"></i>
+      <% end %>
+    <% else %>
+      <%= link_to likes_path(user_id: user.id), method: :post, remote: true, class: 'heart' do %>
+        <i class="fa fa-heart-o text-danger"></i>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="caption">
+    <%= link_to 'View Profile', client_path(user) %>
+  </div>
+</div>

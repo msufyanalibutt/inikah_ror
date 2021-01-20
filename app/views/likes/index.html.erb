@@ -1,0 +1,35 @@
+<div class="profile-content py-5 inner-page-content">
+  <div class="container">
+    <div class=""><h2 class="mb-5 text-center">Like's</h2></div>
+    <div class="mb-5"><strong><%= @likes.count %> user/s likes your profile</strong></div>
+    <div class="row">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+            <% @likes.each.with_index(1) do |like, index| %>
+              <tr>
+                <td><%= index %></td>
+                <td><%= link_to like.liker.full_name, client_path(like.liker) %></td>
+                <td><%= like.liker.email %></td>
+                <% 
+                  is_liked = Like.find_by(user_id: like.liker, liker_id: current_user.id).present?
+                %>
+                <% if is_liked %>
+                  <td>Already Liked</td>
+                <% else %>
+                  <td><%= link_to 'Like Back', like_back_likes_path(user_id: like.liker) %></td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

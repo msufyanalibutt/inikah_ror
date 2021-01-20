@@ -1,0 +1,75 @@
+<div class="chat-section py-5 inner-page-content">
+  <div class="container-fluid h-100">
+    <div class="row h-100">
+      <div class="col-md-4 col-xl-4 chat"><div class="card mb-sm-3 mb-md-0 contacts_card">
+        <div class="card-header">
+
+        </div>
+        <div class="card-body contacts_body">
+          <ui class="contacts">
+            <li class="active">
+              <div class="d-flex bd-highlight">
+                <div class="img_cont">
+                  <% if @member.images.attached? %>
+                    <%= image_tag @member.images.first, class: 'rounded-circle user_img' %>
+                  <% else %>
+                    <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+                  <% end %>
+                </div>
+                <div class="user_info">
+                  <span><%= @member.username %></span>
+                </div>
+              </div>
+            </li>
+          </ui>
+        </div>
+        <div class="card-footer"></div>
+      </div></div>
+      <div class="col-md-8 col-xl-8 chat">
+        <div class="card">
+          <div class="card-header msg_head">
+            <div class="d-flex bd-highlight">
+              <div class="img_cont">
+                <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+              </div>
+              <div class="user_info">
+                <span>Chat with <%= @member.first_name %></span>
+                <p><%= @conversation.messages.count %></p>
+              </div>
+              <div class="video_cam">
+                <span><i class="fa fa-video"></i></span>
+                <span><i class="fa fa-phone"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="card-body msg_card_body" id="conversation_<%= @conversation.id %>">
+            <div id="new_message_div">
+              <%= render 'messages', conversation: @conversation, member: @member %>
+            </div>
+          </div>
+          <div class="card-footer">
+            <%= form_for :conversation, url: conversations_path, remote: true do |f|%>
+              <div class="input-group">
+                <div class="input-group-append">
+                  <span class="input-group-text attach_btn"><i class="fa fa-paperclip"></i></span>
+                </div>
+                <div class="form-control p-0 border-0">
+                  <%= hidden_field_tag :sender, @user.id %>
+                  <%= hidden_field_tag :receiver, @member.id  %>
+                  <%= text_field_tag :note, nil, placeholder: "Type here", class: "form-control border-0" %>
+                </div>
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-danger">Send</button>
+                </div>
+              </div>
+              <!-- <textarea name="" class="form-control type_msg" placeholder="Type your message..."></textarea>
+              <div class="input-group-append">
+                <span class="input-group-text send_btn"><i class="fa fa-location-arrow"></i></span>
+              </div> -->
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

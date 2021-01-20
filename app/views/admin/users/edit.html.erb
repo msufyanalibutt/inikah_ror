@@ -1,0 +1,130 @@
+<div class="view-profile edit-profile py-5">
+  <div class="container">
+    <%= form_for(@client , url: admin_user_path(@client), method: :patch) do |f| %>
+      <% @client.errors.full_messages.each do |msg| %>
+        <ul>
+          <li class="text-danger"><%= msg %></li>
+        </ul>
+      <% end %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card p-3 border-0 mb-4">
+            <div class="static-text background-green text-white p-2">Gold Packge</div>
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <div class="img-holder update-img border p-1 mb-3">
+                  <%= image_tag 'dummy.jpg', class: 'img-fluid' %>
+                  <div class="img-uploader">
+                    <%= f.file_field :images, multiple: true %>
+                    <button type="button" class="btn btn-danger">Image Upload</button>
+                  </div>
+                  <div class="upload-preview">
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="mb-3 info-holder">
+                  <h6 class="text-danger mb-3"><%= @client.first_name %> <%= @client.last_name %></h6>
+                  <div class="form-group">
+                    <%= f.label :age %> <span style="color: red;">*</span>
+                    <%= f.number_field :age, min: 10, max: 150, placeholder: 'Age', class: "form-control" %>
+                  </div>
+                  <div class="form-row form-group">
+                    <div class="col-6">
+                      <%= f.select :religion, options_for_select(User::RELIGION, @client.religion), { prompt: 'Please select your religion' }, placeholder: 'Religion', class: "form-control" %>
+                    </div>
+                    <div class="col-6">
+                      <%= f.select :education, options_for_select(User::EDUCATION, @client.education), { prompt: 'Please select your education'}, placeholder: 'Education', class: "form-control" %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <%= f.text_field :job_title, placeholder: 'Profession', class: "form-control" %>
+                  </div>
+                </div>
+                <div class="clearfix multi-images">
+                  <% if @client.images.attached? %>
+                    <ul class="list-unstyled">
+                      <% @client.images.each do |image| %>
+                        <li><%= image_tag image, class: 'img-fluid' %></li>
+                      <% end %>
+                    </ul>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card border-0 mb-4">
+            <div class="card-header">
+              <h4 class="text-green"><i class="fa fa-info-circle" aria-hidden="true"></i> Personal Information</h4>
+            </div>
+            <div class="card-body">
+              <h6 class="mb-4 text-danger"><i class="fa fa-user text-danger"></i> A few words about me</h6>
+              <%= f.text_area :abount_me, class: "form-control", size: '50x10' %>
+            </div>
+          </div>
+
+          <div class="card border-0 mb-4">
+            <div class="card-header">
+              <h4 class="text-green"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Expectations</h4>
+            </div>
+            <div class="card-body">
+              <h6 class="mb-3 text-danger"><i class="fa fa-user text-danger"></i> What are you looking for</h6>
+              <%= f.text_area :expectations, class: "form-control", size: '50x10' %>
+            </div>
+          </div>
+          <div class="card border-0 mb-4">
+            <div class="card-header"><h4 class="text-green"><i class="fa fa-id-card" aria-hidden="true"></i> Basic Detail</h4></div>
+            <div class="card-body">
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <%= f.label :height, 'Height (feet.inches)' %> <span style="color: red;">*</span>
+                  <%= f.number_field :height, min: 1, max: 10, step: 0.1, class: "form-control" %>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <%= f.label :weight, 'Weight (kg)' %> <span style="color: red;">*</span>
+                  <%= f.number_field :weight, min: 10, max: 600, step: 1, class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <%= f.label :native %>
+                  <%= f.select :native, options_for_select(User::NATIVE, @client.native), { prompt: 'Please select your native language' }, class: "form-control" %>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <%= f.label :hobbies %>
+                  <%= f.text_field :hobbies, class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <%= f.label :annual_income %> <span style="color: red;">*</span>
+                  <%= f.number_field :annual_income, step: 100, class: "form-control" %>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <%= f.label :skin_tone %>
+                  <%= f.select :skin_tone, options_for_select(User::SKIN_TONE, @client.skin_tone), { prompt: 'Please select your skin tone' }, class: "form-control" %>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <%= f.label :family_background %>
+                  <%= f.text_field :family_background, class: "form-control" %>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <%= f.label :marital_status %>
+                  <%= f.select :marital_status, options_for_select(User::MARITAL_STATUS, @client.marital_status), { prompt: 'Please select your marital status' }, class: "form-control" %>
+                </div>
+              </div>
+              <!-- <button type="submit" class="btn btn-danger"><i class="fa fa-heart"></i> Save</button> -->
+            </div>
+          </div>
+
+        </div>
+        <div class="text-center col-12 mt-3">
+          <button type="submit" class="btn btn-danger btn-lg"><i class="fa fa-heart"></i> Save</button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

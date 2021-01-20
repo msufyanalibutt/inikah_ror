@@ -1,0 +1,61 @@
+<div class="chat-section py-5 inner-page-content">
+  <div class="container-fluid h-100">
+    <% if @conversations.any? %>
+      <div class="row h-100">
+        <div class="col-md-4 col-xl-4 chat"><div class="card mb-sm-3 mb-md-0 contacts_card">
+          <div class="card-header">
+          <%
+            @conversation = @conversations.first
+            if @conversation&.sender == current_user
+              @member = @conversation&.receiver
+            elsif @conversation&.receiver == current_user
+              @member = @conversation&.sender
+            end
+            @conversation.messages.update_all(seen: true) if @conversation.present?
+          %>
+          </div>
+          <div class="card-body contacts_body">
+            <ui class="contacts">
+              <% @conversations.each do |conv| %>
+                <%
+                  if conv.sender == current_user
+                    member = conv.receiver
+                  elsif conv.receiver == current_user
+                    member = conv.sender
+                  end
+                %>
+                <%= link_to conversation_path(conv), method: :patch, remote: true do %>
+                  <li class="active">
+                    <div class="d-flex bd-highlight">
+                      <div class="img_cont">
+                        <% if member&.images&.attached? %>
+                          <%= image_tag member&.images&.first, class: 'rounded-circle user_img' %>
+                        <% else %>
+                          <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+                        <% end %>
+                      </div>
+                      <div class="user_info">
+                        <span><%= member&.username %></span>
+                      </div>
+                      <div id="conv_message_count_<%= conv.id %>" style="position: relative;">
+                        <%= render 'conv_messages_count', conv: conv %>
+                      </div>
+                    </div>
+                  </li>
+                <% end %>
+              <% end %>
+            </ui>
+          </div>
+          <div class="card-footer"></div>
+        </div></div>
+        <div class="col-md-8 col-xl-8 chat" id="change_conversation">
+          <% if @conversation.present? %>
+            <%= render 'conversation', conversation: @conversation, member: @member, user: @user %>
+          <% end %>
+        </div>
+      </div>
+    <% else %>
+      <h2>No active conversations</h2>
+    <% end %>
+  </div>
+</div>

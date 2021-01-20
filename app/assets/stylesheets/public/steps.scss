@@ -1,0 +1,50 @@
+#regForm {
+  overflow: hidden;
+}
+
+/* Style the input fields */
+
+input {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  font-family: Raleway;
+  border: 1px solid #aaaaaa;
+
+  &.invalid {
+    background-color: #ffdddd;
+  }
+}
+
+/* Mark input boxes that gets an error on validation: */
+
+/* Hide all steps by default: */
+
+.tab {
+  display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+
+  &.active {
+    opacity: 1;
+  }
+
+  &.finish {
+    background-color: #4CAF50;
+  }
+}
+
+/* Mark the active step: */
+
+/* Mark the steps that are finished and valid: */

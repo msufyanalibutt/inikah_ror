@@ -1,0 +1,136 @@
+<h2>Profile</h2>
+<% if @client.verified? %>
+  <i class="ml-1 fa-2x fa fa-check-circle"></i>
+<% end %>
+
+
+<%= link_to verify_admin_user_path(@client), class: "btn btn-danger btn-md pull-right" do %>
+  Verify User
+  <i class="fa fa-heart"></i>
+<% end %> 
+
+<%= link_to edit_admin_user_path(@client), class: 'mr-2 btn btn-danger btn-md pull-right', title: 'edit user', 'data-toggle' => 'tooltip', 'data-placement' => 'right' do %>
+  <i class="fa fa-pencil"></i>
+<% end %>
+<div class="view-profile py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card p-3 border-0 mb-4">
+          <div class="row">
+            <div class="col-md-4 text-center">
+              <div class="img-holder-view border p-1 mb-3">
+                <% if @client.images.attached? %>
+                  <%= image_tag @client.images.first, class: 'img-fluid' %>
+                <% else %>
+                  <%= image_tag 'profile.png', class: 'img-fluid' %>
+                <% end %>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="border-bottom mb-3 info-holder">
+                <h6 class="text-danger mb-3"><%= @client.first_name %> <%= @client.last_name %></h6>
+                <p class="mb-2"><i class="fa fa-user text-green"></i> <%= @client.username %> </p>
+                <p class="mb-2"><i class="fa fa-user text-green"></i> <%= @client.age %> </p>
+                <p class="mb-2"><i class="fa fa-book text-green"></i><%= @client.religion %></p>
+                <p class="mb-2"><i class="fa fa-users text-green"></i> <%= @client.education %></p>
+                <p class="mb-2"><i class="fa fa-map-marker text-green"></i> <%= @client.job_title %></p>
+                <p class="mb-2"><i class="fa fa-graduation-cap text-green"></i> <%= @client.job_title %></p>
+              </div>
+            </div>
+            <div class="clearfix multi-images col-12">
+              <% if @client.images.attached? %>
+                <ul class="list-unstyled">
+                  <% @client.images.each do |image| %>
+                    <li><%= image_tag image, class: 'img-fluid' %></li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="card border-0 mb-4">
+          <div class="card-header">
+            <h4 class="text-green"><i class="fa fa-info-circle" aria-hidden="true"></i> Personal Information</h4>
+          </div>
+          <div class="card-body">
+            <h6 class="mb-3 text-danger"><i class="fa fa-user text-danger"></i> A few words about me</h6>
+            <p><%= simple_format(@client.abount_me) %></p>
+          </div>
+        </div>
+        <div class="card border-0 mb-4">
+          <div class="card-header">
+            <h4 class="text-green"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Expectations</h4>
+          </div>
+          <div class="card-body">
+            <h6 class="mb-4 text-danger"><i class="fa fa-user text-danger"></i> What are you looking for</h6>
+            <p><%= simple_format(@client.expectations) %></p>
+          </div>
+        </div>
+        <div class="card border-0 mb-4">
+          <div class="card-header">
+            <h4 class="m-0 text-green"><i class="fa fa-id-card" aria-hidden="true"></i> Basic Detail</h4>
+          </div>
+          <div class="card-body">
+            <div class="row mb-3">
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-6"><strong>Height</strong></div>
+                  <div class="col-6"><%= @client.height %></div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-6"><strong>Weight</strong></div>
+                  <div class="col-6"><%= @client.weight %></div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-6"><strong>Native</strong></div>
+                  <div class="col-6"><%= @client.native %></div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-6"><strong>Hobbies</strong></div>
+                  <div class="col-6"><%= @client.hobbies %></div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-6"><strong>Annual Income</strong></div>
+                  <div class="col-6"><%= @client.annual_income %></div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-6"><strong>Body type / Complexion</strong></div>
+                  <div class="col-6"><%= @client.skin_tone %></div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-6"><strong>Family background</strong></div>
+                  <div class="col-6"><%= @client.family_background %></div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-6"><strong>Marital Status</strong></div>
+                  <div class="col-6"><%= @client.marital_status %></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

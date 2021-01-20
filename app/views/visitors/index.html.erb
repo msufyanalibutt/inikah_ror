@@ -1,0 +1,165 @@
+<div class="w1">
+  <%= image_tag 'homepage.jpg', class: 'img-fluid' %>
+  <div class="banner">
+    <div class="caption">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-5">
+            <div class="signup-box p-5" id="sign-up-box">
+              <%= render 'shared/steps', user: @user %>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="text-holder pl-5">
+              <h1 class="text-white mb-4">The Best Way to Find <br>Your Dream</h1>
+              <p class="text-white">Find the person who's right for you</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="four-col py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 text-center">
+        <div class="img-holder mb-3">
+          <%= image_tag 'icon01.png', class: 'img-fluid' %>
+        </div>
+        <h5 class="mb-3">Could you be next?</h5>
+        <p>1.6M people have already met their partner on iNikah.</p>
+      </div>
+      <div class="col-lg-3 text-center">
+        <div class="img-holder mb-3">
+          <%= image_tag 'icon02.png', class: 'img-fluid' %>
+        </div>
+        <h5 class="mb-3">Dine more for less!</h5>
+        <p>Get 100% off your bill with iNikah Dining**</p>
+      </div>
+      <div class="col-lg-3 text-center">
+        <div class="img-holder mb-3">
+          <%= image_tag 'icon03.png', class: 'img-fluid' %>
+        </div>
+        <h5 class="mb-3">powerful search</h5>
+        <p>A powerful search tool that lets singles filter according to what matters</p>
+      </div>
+      <div class="col-lg-3 text-center">
+        <div class="img-holder mb-3">
+          <%= image_tag 'icon04.png', class: 'img-fluid' %>
+        </div>
+        <h5 class="mb-3">profiles</h5>
+        <p>Singles revealing their true self through detailed profiles</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-intro py-5" id="why_nikkah">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-4">
+        <%= image_tag 'banner1.png', class: 'img-fluid w-100' %>
+      </div>
+      <div class="col-lg-8">
+        <h2 class="mb-5">Why iNikah?</h2>
+        <ul class="list-unstyled user-style">
+          <li>Our members are looking for their very own love story and we do everything to help them achieve it.</li>
+          <li>Need a helping hand? Let our virtual online dating coach Lara be your guide to finding your ideal partner.</li>
+          <li>Identify our most genuine members instantly: the iNikah Badge is the ultimate recognition of real gents.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section-work py-5" id="does_work">
+  <div class="container">
+    <div class="heading mb-5 text-center w-100">
+      <h2 class="mb-4">How does it work?</h2>
+      <p>You are three steps away from meeting your special someone</p>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <%= image_tag 'banner3.png', class: 'img-fluid w-100' %>
+      </div>
+      <div class="col-lg-6">
+        <h3 class="mb-4">Tell us who you are!</h3>
+        <p class="mb-4">Talk about yourself. The secret? Be natural, honest and spontaneous. A few lines are enough to make an impression.</p>
+        <p class="text-danger mb-4">Why not add a bit of humour, too?</p>
+        <p class="mb-4">Be precise: the more search criteria you complete, the greater your chances are of being contacted by singles who share the same interests as you.</p>
+        <p>Share your photos. Create an album that reflects your personality.</p>
+      </div>
+      <div class="col-lg-6">
+        <h3 class="mb-4">Find the right person</h3>
+        <ul class="list-unstyled user-style">
+          <li>Meet the person who’s right for you thanks to our detailed search.</li>
+          <li>Discover our personalised selection of detailed dating profiles.</li>
+          <li>Come and meet other singles at our Match evenings and activities.</li>
+        </ul>
+      </div>
+      <div class="col-lg-6 nagitive-margin">
+        <%= image_tag 'banner4.png', class: 'img-fluid w-100' %>
+      </div>
+      <div class="col-lg-6 nagitive-margin">
+        <%= image_tag 'banner5.png', class: 'img-fluid w-100' %>
+      </div>
+      <div class="col-lg-6">
+        <h3 class="mb-4">Discuss</h3>
+        <p>Don’t know how to kick start the conversation? Tell them about the little details that attracted you to their online dating profile or discuss your shared interests.</p>
+        <p>Or be creative and share a music link, or a GIF!</p>
+        <p>Read our advice articles to make your profile as attractive as possible and find tips on how to break the ice.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="register-section bg-danger">
+  <div class="row align-items-center">
+    <div class="col-lg-6">
+      <%= image_tag 'banner2.png', class: 'img-fluid w-100' %>
+    </div>
+    <div class="col-lg-6 text-center text-holder">
+      <h2 class="text-white d-block mb-5">Start meeting singles who are ready to<br> commit today</h2>
+      <a class="btn" href="/#sign-up-box">Register Now</a>
+    </div>
+  </div>
+</div>
+<div class="section-our-story py-5">
+  <div class="container">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+      </ol>
+      <div class="carousel-inner">
+        <% @success_stories.each_with_index do |story, index| %>
+          <div class="carousel-item <%= index == 0 ? 'active' : ''%>">
+            <div class="row align-items-center">
+              <div class="col-lg-8 text-right">
+                <h3><%= story.name %></h3>
+                <p><%= story.description %></p>
+              </div>
+              <div class="col-lg-4 bg-light-gray">
+                <%= image_tag story.image %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section-contact py-5">
+  <div class="container">
+    <div class="heading mb-5 text-center">
+      <h2 class="mb-4">Send Us A Message!</h2>
+      <p>We Are Here To Help</p>
+    </div>
+    <div class="col-md-10 mx-auto" id="contact-form">
+      <%= render 'contacts/form', contact: Contact.new %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<h2>Pending attachments</h2>
+<div class="table-responsive">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>User</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @attachments.each do |images| %>
+        <% if images.attached? %>
+          <% images.each do |image| %>
+            <% unless image.visibility? %>
+              <tr>
+                <td style="width: 60%;"><%= image_tag image, class: 'img-fluid-table' %></td>
+                <td><%= image.record.username %></td>
+                <td>
+                  <%= link_to 'Approve', approve_admin_attachment_path(image), class: 'mr-2' %> 
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

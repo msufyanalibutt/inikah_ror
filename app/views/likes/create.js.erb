@@ -1,0 +1,6 @@
+<% if @user.blank? || current_user.blank? %>
+  toastr['error']('User not found!', { timeOut: 3000 });
+<% else %>
+  $("#user-<%= @user.id %>").html("<%= j(render '/dashboard/user_card', user: @user, is_liked: true) %>");
+  toastr['success']('User has been liked!', { timeOut: 3000 });
+<% end %>

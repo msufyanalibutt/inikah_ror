@@ -1,0 +1,107 @@
+<% user.errors.full_messages.each do |msg| %>
+  <div class="alert alert-danger cutom-alert" role="alert"><%= msg %></div>
+<% end %>
+<%= form_for(user, url: user_registration_path(user), html: { id: "regForm" }, data: {validate: 'parsley'} ) do |f| %>
+  <div style="margin-left: 90px;">
+    <ul class="multi-steps list-unstyled mb-4" id="heart_sections">
+      <li id="step-one"><i class="fa fa-heart"></i></li>
+      <li id="step-two"><i class="fa fa-heart-o"></i></li>
+      <li id="step-third"><i class="fa fa-heart-o"></i></li>
+      <li id="step-fourth"><i class="fa fa-heart-o"></i></li>
+      <li id="step-fifth"><i class="fa fa-heart-o"></i></li>
+    </ul>
+  </div>
+  <!-- One "tab" for each step in the form: -->
+  <div class="tab step-one">
+    <div class="row">
+      <div class="col-lg-3 img-holder">
+        <%= image_tag 'user.png' %>
+      </div>
+      <div class="col-lg-9 pl-0 step-text-holder">
+        <div class="messegebox-text-box p-3 mb-3 bg-white">
+          <p class="mb-1">Welcome to iNikah.com</p>
+          <p class="m-0">How can i help you?</p>
+        </div>
+        <label class="d-block mb-3">I am looking for:</label>
+        <div class="d-flex">
+          <div class="custom-control custom-radio">
+
+            <%= f.radio_button :gender, 'husband', class: 'custom-control-input', id: "gender_Husand" %>
+            <%= label :gender, 'Husand', class: 'custom-control-label' %>
+
+          </div>
+          <div class="custom-control custom-radio ml-3">
+            <%= f.radio_button :gender, 'wife', class: 'custom-control-input', id: 'gender_Wife' %>
+            <%= label :gender, 'Wife', class: 'custom-control-label' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab step-two">
+    <p><%= f.email_field :email, placeholder: 'Email', autofocus: true, autocomplete: "email",data: { parsley_required: "",parsley_pattern: "^"+User::VALID_EMAIL_REGEX + "$",parsley_type: "email" }, required: true %></p>
+    <p><%= f.number_field :phone_number, placeholder: 'Phone Number', autofocus: true, required: true %></p>
+  </div>
+
+  <div class="tab step-third">
+    <div class="row">
+      <div class="col-md-12 mb-3">
+        <%= f.text_field :first_name, placeholder: 'First Name', autofocus: true, required: true %>
+      </div>
+      <div class="col-md-12 mb-3">
+        <%= f.text_field :last_name, placeholder: 'Last Name', autofocus: true, required: true   %>
+      </div>
+      <div class="col-md-12">
+        <%= f.date_select :dob, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, class: 'form-control form-control-sm mb-2' , required: true %>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="tab step-fourth">
+    <div class="row">
+      <div class="col-md-12 mb-3">
+        <%= f.select(:country, COUNTRY, {:prompt => 'Select Country'}, { :class => 'form-control mb-2', required: true }) %>
+      </div>
+      <div class="col-md-12 mb-3">
+        <%= f.select(:city, CITIES, {:prompt => 'Select City'}, { :class => 'form-control mb-2', required: true }) %>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="tab step-fifth">
+    <div class="row">
+      <div class="col-md-12 mb-3">
+        <%= f.text_field :username, placeholder: 'UserName', autofocus: true, required: true %>
+      </div>
+      <div class="col-md-12 mb-3">
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Password', required: true %>
+      </div>
+      <div class="col-md-12 mb-3">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Confirm Password', required: true %>
+      </div>
+    </div>
+  </div>
+
+  <div style="overflow:auto;">
+    <div style="display: flex; justify-content: flex-end;">
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)" class="btn btn-danger mt-3">Previous</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)" class="btn btn-danger mt-3 ml-3">Next</button>
+    </div>
+  </div>
+
+  <!-- Circles which indicates the steps of the form: -->
+  <div style="text-align:center;margin-top:20px;">
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+  </div>
+<% end %>

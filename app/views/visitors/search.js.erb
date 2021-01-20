@@ -1,0 +1,6 @@
+$('#user-cards').html("<%= j(render 'dashboard/user_cards', users: @users, liked_users: @liked_users) %>");
+$('#search-menu-button').trigger(':click');
+
+if ($('.user-search-menu').hasClass('show')) {
+  $('#search-menu-button').click();
+}

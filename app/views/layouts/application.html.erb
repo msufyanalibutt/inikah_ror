@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inikkah</title>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= csp_meta_tag %>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
+    <%= action_cable_meta_tag %>
+  </head>
+
+  <body>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    <div id="wrapper">
+      <%= render 'shared/header' %>
+      <%= yield %>
+      <%= render 'shared/footer' %>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+.events-page {
+  margin-top: 43px;
+
+  .event-banner {
+    position: relative;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+
+    .caption {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      .container {
+        height: 100%;
+      }
+
+      h2 {
+        &:after {
+          display: none;
+        }
+      }
+
+      p {
+        color: #000;
+        background: rgba(255,255,255,0.5);
+        display: inline-block;
+        vertical-align: top;
+        padding: 10px;
+      }
+    }
+
+    .text-holder {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      height: 100%;
+    }
+  }
+}
+
+.upcoming-events {
+  .col-holder {
+    position: relative;
+    height: 350px;
+    overflow: hidden;
+
+    img {
+      object-fit: cover;
+      height: 100vh;
+    }
+
+    .buttons-holder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 0 0 15px;
+    }
+
+    .text-holder {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      opacity: 0.8;
+      padding: 15px;
+      color: #fff;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .events-page {
+    margin-top: 0;
+
+    .event-banner {
+      .caption {
+        position: static;
+        padding: 30px 0 0;
+      }
+    }
+  }
+}

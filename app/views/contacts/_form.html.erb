@@ -1,0 +1,16 @@
+<%= form_for contact, url: contacts_path, remote: true, data: { validate: 'parsley' } do |f| %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.text_field :name, class: 'form-control mb-3', placeholder: 'Your Name', required: true %>
+    </div>
+    <div class="col-md-6">
+      <%= f.email_field :email, class: 'form-control mb-3', placeholder: 'Your Email', required: true %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= f.text_area :message, class: 'form-control mb-3', placeholder: 'Your Message', required: true %>
+    </div>
+  </div>
+  <%= f.submit 'Send', class: 'btn btn-danger' %>
+<% end %>

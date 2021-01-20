@@ -1,0 +1,19 @@
+<%= form_for [:admin, @event] do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control', placeholder: "Enter event's name", required: true, :readonly => true %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'form-control', placeholder: "Enter event's description", required: true, :readonly => true %>
+  </div>
+  <div class="form-group">
+    <%= f.label :start_date %>
+    <%= f.date_select :start_date, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year , end_year: Date.today.year - 100}, class: 'form-control form-control-sm mb-2', required: true, :readonly => true, :disabled => true %>
+  </div>
+  <div class="form-group">
+    <%= f.label :end_date %>
+    <%= f.date_select :end_date, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year, end_year: Date.today.year - 100}, class: 'form-control form-control-sm mb-2', required: true, :readonly => true, :disabled => true %>
+  </div>
+  <%= link_to 'Back', admin_events_path, class: 'btn btn-sm btn-primary' %>
+<% end %>

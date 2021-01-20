@@ -1,0 +1,26 @@
+<div class="profile-content py-5 inner-page-content">
+  <div class="container">
+    <div class="mb-5"><%= link_to 'Add New', new_success_story_path, class: "btn btn-danger" %></div>
+    <div class="row">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+            <% @success_stories.each do |story| %>
+              <tr>
+                <td><%= story.name %></td>
+                <td><%= story.description %></td>
+                <td><%= link_to 'Edit', edit_success_story_path(story) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+            

@@ -1,0 +1,25 @@
+<div class="profile-content py-5 inner-page-content">
+  <div class="container">
+    <div class="mb-5"><h2 class="mb-5 text-center">View's</h2></div>
+    <div class="row">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+          </thead>
+          <tbody>
+            <% @views.each.with_index(1) do |view, index| %>
+              <tr>
+                <td><%= index %></td>
+                <td><%= link_to view.viewer.full_name, client_path(view.viewer) %></td>
+                <td><%= view.viewer.email %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

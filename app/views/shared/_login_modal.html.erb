@@ -1,0 +1,28 @@
+<div class="modal fade login-modal" id="login_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content py-4">
+      <div class="clearfix">
+        <h3 class="px-4" id="exampleModalLongTitle">Login</h3>
+      </div>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="modal-body p-4">
+        <%= form_for(@resource, as: :user, url: session_path(:user), data: {validate: 'parsley'}) do |f| %>
+          <div class="form-group">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email", placeholder: "abd@gmail.com",data: { parsley_required: "",parsley_pattern: "^"+User::VALID_EMAIL_REGEX + "$",parsley_type: "email" }, required: true %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, class: "form-control", autocomplete: "current-password", placeholder: "password",  required: true %>
+          </div>
+          <div class="text-center mt-3">
+            <%= f.submit "Log in", class: "btn btn-danger", id: 'login-attempt'%>
+            <%= link_to 'Forgot Password', new_user_password_path %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
